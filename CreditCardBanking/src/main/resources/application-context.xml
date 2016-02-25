@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="calculateBillAmountService"
+		class="service.CalculateBillAmountServiceImpl">
+		<constructor-arg ref="calculateBillAmountServiceMapping" />
+	</bean>
+
+	<bean id="calculateBillAmountServiceMapping"
+		class="fasade.CalculateBillAmountServiceMappingImpl">
+		<property name="calculateBillAmount" ref="calculateBillAmount" />
+	</bean>
+
+	<bean id="calculateBillAmount"
+		class="business.CalculateBillAmountImpl">
+		<property name="cardInterestRate">
+			<map>
+				<entry key="SLV">
+					<value>13.5</value>
+				</entry>
+				<entry key="GLD">
+					<value>11.5</value>
+				</entry>
+				<entry key="PLT">
+					<value>9.5</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>
