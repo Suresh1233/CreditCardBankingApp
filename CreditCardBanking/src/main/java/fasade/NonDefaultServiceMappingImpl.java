@@ -1,5 +1,6 @@
 package fasade;
 
+import java.io.Serializable;
 import java.util.List;
 
 import business.NonDefaultCustomerInterface;
@@ -7,8 +8,12 @@ import model.CreditCardCustomerInfoPOJO;
 import model.NonDefaultInputPOJO;
 
 public class NonDefaultServiceMappingImpl implements
-		NonDefaultServiceMappingInterface {
+		NonDefaultServiceMappingInterface, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private NonDefaultCustomerInterface nonDefaultCustomer;
 
 	public NonDefaultCustomerInterface getNonDefaultCustomer() {

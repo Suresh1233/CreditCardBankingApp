@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,8 +9,12 @@ import model.CreditCardCustomerInfoPOJO;
 import model.CreditcardCustomerInfoMapper;
 import model.NonDefaultInputPOJO;
 
-public class CreditcardDBDAOImpl implements CreditcardDBDAOInterface {
+public class CreditcardDBDAOImpl implements CreditcardDBDAOInterface, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JdbcTemplate creditcardDatabaseJdbcTemplate;
 
 	public JdbcTemplate getCreditcardDatabaseJdbcTemplate() {

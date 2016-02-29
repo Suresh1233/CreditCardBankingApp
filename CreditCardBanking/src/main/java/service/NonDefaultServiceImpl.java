@@ -1,13 +1,18 @@
 package service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import fasade.NonDefaultServiceMappingInterface;
 import model.CreditCardCustomerInfoPOJO;
 import model.NonDefaultInputPOJO;
 
-public class NonDefaultServiceImpl implements NonDefaultServiceInterface {
+public class NonDefaultServiceImpl implements NonDefaultServiceInterface, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private NonDefaultServiceMappingInterface nonDefaultServiceMapping;
 
 	public NonDefaultServiceImpl(
