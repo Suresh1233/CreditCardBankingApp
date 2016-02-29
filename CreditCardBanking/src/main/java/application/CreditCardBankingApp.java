@@ -1,15 +1,17 @@
 package application;
 
+import java.util.List;
 import java.util.Scanner;
 
-import model.DefaulterServicePOJO;
+import model.CreditCardCustomerInfoPOJO;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import service.CalculateBillAmountServiceInterface;
-import config.DefaulterConfiguration;
+import service.NonDefaultServiceInterface;
+import config.NonDefaultConfiguration;
 
 public class CreditCardBankingApp {
 
@@ -35,7 +37,8 @@ public class CreditCardBankingApp {
 		Scanner userInput = new Scanner(System.in);
 		int userOption = userInput.nextInt();
 
-		CalculateBillAmountServiceInterface service = null;
+		CalculateBillAmountServiceInterface calculateBillAmountService = null;
+		NonDefaultServiceInterface nonDefaultService = null;
 
 		switch (userOption) {
 		case 1: {
@@ -48,27 +51,30 @@ public class CreditCardBankingApp {
 			String cardType = userCardType.next();
 			ApplicationContext context = new ClassPathXmlApplicationContext(
 					"application-context.xml");
-			service = (CalculateBillAmountServiceInterface) context
+			calculateBillAmountService = (CalculateBillAmountServiceInterface) context
 					.getBean("calculateBillAmountService");
 			System.out.println("The Total bill amount calculated :"
-					+ service.callService(cardType, billAmount));
+					+ calculateBillAmountService.callService(cardType,
+							billAmount));
 			break;
 		}
 		case 2: {
-			System.out.println("User option :" + userOption);
-			System.out.println("  Enter your Card type : ");
+			System.out.println("  Enter Card type : ");
 			Scanner userCardType = new Scanner(System.in);
 			String cardType = userCardType.next();
-			System.out.println("  Enter your Default Indicator : ");
-			Scanner userDefaultIndicator = new Scanner(System.in);
-			byte defaultIndicator = userDefaultIndicator.nextByte();
+			System.out.println("  Enter payment indicator : ");
+			Scanner userPaymentIndicator = new Scanner(System.in);
+			String paymentIndicator = userPaymentIndicator.next();
 			ApplicationContext context = new AnnotationConfigApplicationContext(
-					DefaulterConfiguration.class);
-			DefaulterServicePOJO defaulterServicePOJO = (DefaulterServicePOJO) context
-					.getBean("defaulterServicePOJO");
-			defaulterServicePOJO.setUserCardType(cardType);
-			defaulterServicePOJO.setDefaultIndicator(defaultIndicator);
-
+					NonDefaultConfiguration.class);
+			nonDefaultService = (NonDefaultServiceInterface) context
+					.getBean("nonDefaultService");
+			List<CreditCardCustomerInfoPOJO> creditcardInfoList = nonDefaultService
+					.callService(cardType, paymentIndicator);
+			System.out.println("List of customers in the above payment indicator :");
+			for (CreditCardCustomerInfoPOJO creditcardInfo : creditcardInfoList) {
+				System.out.println(creditcardInfo.toString());
+			}
 			break;
 		}
 		case 3: {
