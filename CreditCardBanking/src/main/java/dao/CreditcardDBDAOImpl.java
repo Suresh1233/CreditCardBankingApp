@@ -3,27 +3,25 @@ package dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import model.CreditCardCustomerInfoPOJO;
 import model.CreditcardCustomerInfoMapper;
 import model.NonDefaultInputPOJO;
 
-public class CreditcardDBDAOImpl implements CreditcardDBDAOInterface, Serializable {
+public class CreditcardDBDAOImpl implements CreditcardDBDAOInterface,
+		Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	@Autowired
 	private JdbcTemplate creditcardDatabaseJdbcTemplate;
 
-	public JdbcTemplate getCreditcardDatabaseJdbcTemplate() {
-		return creditcardDatabaseJdbcTemplate;
-	}
-
-	public void setCreditcardDatabaseJdbcTemplate(
-			JdbcTemplate creditcardDatabaseJdbcTemplate) {
-		this.creditcardDatabaseJdbcTemplate = creditcardDatabaseJdbcTemplate;
+	public CreditcardDBDAOImpl() {
 	}
 
 	public List<CreditCardCustomerInfoPOJO> selectNonDefaultCustomerList(

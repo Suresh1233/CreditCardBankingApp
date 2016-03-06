@@ -6,12 +6,10 @@ import java.util.Scanner;
 import model.CreditCardCustomerInfoPOJO;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import service.CalculateBillAmountServiceInterface;
 import service.NonDefaultServiceInterface;
-import config.NonDefaultConfiguration;
 
 public class CreditCardBankingApp {
 
@@ -65,13 +63,14 @@ public class CreditCardBankingApp {
 			System.out.println("  Enter payment indicator : ");
 			Scanner userPaymentIndicator = new Scanner(System.in);
 			String paymentIndicator = userPaymentIndicator.next();
-			ApplicationContext context = new AnnotationConfigApplicationContext(
-					NonDefaultConfiguration.class);
+			ApplicationContext context = new ClassPathXmlApplicationContext(
+					"nondefault-context.xml");
 			nonDefaultService = (NonDefaultServiceInterface) context
 					.getBean("nonDefaultService");
 			List<CreditCardCustomerInfoPOJO> creditcardInfoList = nonDefaultService
 					.callService(cardType, paymentIndicator);
-			System.out.println("List of customers in the above payment indicator :");
+			System.out
+					.println("List of customers in the above payment indicator :");
 			for (CreditCardCustomerInfoPOJO creditcardInfo : creditcardInfoList) {
 				System.out.println(creditcardInfo.toString());
 			}

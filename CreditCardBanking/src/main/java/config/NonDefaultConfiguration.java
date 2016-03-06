@@ -24,27 +24,22 @@ public class NonDefaultConfiguration {
 
 	@Bean
 	public NonDefaultServiceImpl nonDefaultService() {
-		return new NonDefaultServiceImpl(nonDefaultServiceMapping());
+		return new NonDefaultServiceImpl();
 	}
 
 	@Bean
 	public NonDefaultServiceMappingImpl nonDefaultServiceMapping() {
-		NonDefaultServiceMappingImpl nonDefaultServiceMapping = new NonDefaultServiceMappingImpl();
-		nonDefaultServiceMapping.setNonDefaultCustomer(nonDefaultCustomer());
-		return nonDefaultServiceMapping;
+		return new NonDefaultServiceMappingImpl();
 	}
 
 	@Bean
 	public NonDefaultCustomerImpl nonDefaultCustomer() {
-		return new NonDefaultCustomerImpl(creditcardDBDAO());
+		return new NonDefaultCustomerImpl();
 	}
 
 	@Bean
 	public CreditcardDBDAOImpl creditcardDBDAO() {
-		CreditcardDBDAOImpl creditcardDBDAO = new CreditcardDBDAOImpl();
-		creditcardDBDAO
-				.setCreditcardDatabaseJdbcTemplate(creditcardDatabaseJdbcTemplate());
-		return creditcardDBDAO;
+		return new CreditcardDBDAOImpl();
 	}
 
 	@Bean

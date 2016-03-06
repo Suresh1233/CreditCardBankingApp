@@ -3,6 +3,8 @@ package fasade;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import business.NonDefaultCustomerInterface;
 import model.CreditCardCustomerInfoPOJO;
 import model.NonDefaultInputPOJO;
@@ -14,15 +16,11 @@ public class NonDefaultServiceMappingImpl implements
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Autowired
 	private NonDefaultCustomerInterface nonDefaultCustomer;
 
-	public NonDefaultCustomerInterface getNonDefaultCustomer() {
-		return nonDefaultCustomer;
-	}
-
-	public void setNonDefaultCustomer(
-			NonDefaultCustomerInterface nonDefaultCustomer) {
-		this.nonDefaultCustomer = nonDefaultCustomer;
+	public NonDefaultServiceMappingImpl() {
 	}
 
 	public List<CreditCardCustomerInfoPOJO> getNonDefaultCustomerList(
