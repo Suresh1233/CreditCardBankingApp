@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import service.CalculateBillAmountServiceInterface;
 import service.NonDefaultServiceInterface;
+import service.PaymentProcessingServiceInterface;
 
 public class CreditCardBankingApp {
 
@@ -37,6 +38,7 @@ public class CreditCardBankingApp {
 
 		CalculateBillAmountServiceInterface calculateBillAmountService = null;
 		NonDefaultServiceInterface nonDefaultService = null;
+		PaymentProcessingServiceInterface paymentProcessingService = null;
 
 		switch (userOption) {
 		case 1: {
@@ -77,7 +79,19 @@ public class CreditCardBankingApp {
 			break;
 		}
 		case 3: {
-			System.out.println("User option :" + userOption);
+			System.out.println("  Enter Account Number : ");
+			Scanner userAcctNum = new Scanner(System.in);
+			String acctNum = userAcctNum.next();
+			System.out.println("  Enter Payment Amount : ");
+			Scanner userPaymentAmount = new Scanner(System.in);
+			Double paymentAmount = userPaymentAmount.nextDouble();
+			ApplicationContext context = new ClassPathXmlApplicationContext(
+					"paymentprocessing-context.xml");
+			paymentProcessingService = (PaymentProcessingServiceInterface) context
+					.getBean("paymentProcessingService");
+			System.out.println("Payment Status : "
+					+ paymentProcessingService.processUserPayment(acctNum,
+							paymentAmount));
 			break;
 		}
 		default: {

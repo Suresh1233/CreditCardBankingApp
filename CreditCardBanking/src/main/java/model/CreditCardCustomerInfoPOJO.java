@@ -11,7 +11,7 @@ public class CreditCardCustomerInfoPOJO {
 	private String customerAddress;
 	private Long customerPhone;
 	private String customerEmail;
-	private Long creditcardAccountId;
+	private String creditcardAccountId;
 	private Long creditcardPlasticId;
 	private String creditcardType;
 	private Double creditcardDueAmount;
@@ -58,11 +58,11 @@ public class CreditCardCustomerInfoPOJO {
 		this.customerEmail = customerEmail;
 	}
 
-	public Long getCreditcardAccountId() {
+	public String getCreditcardAccountId() {
 		return creditcardAccountId;
 	}
 
-	public void setCreditcardAccountId(Long creditcardAccountId) {
+	public void setCreditcardAccountId(String creditcardAccountId) {
 		this.creditcardAccountId = creditcardAccountId;
 	}
 
@@ -105,20 +105,20 @@ public class CreditCardCustomerInfoPOJO {
 	public void setCreditcardDueDate(String creditcardDueDate) {
 		this.creditcardDueDate = creditcardDueDate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "customerID : " + getCustomerID() + "\n" +
-				"customerName : " + getCustomerName() + "\n" +
-				"customerAddress : " + getCustomerAddress() + "\n" +
-				"customerPhone : " + getCustomerPhone() + "\n" +
-				"customerEmail : " + getCustomerEmail() + "\n" +
-				"creditcardAccountId : " + getCreditcardAccountId() + "\n" +
-				"creditcardPlasticId : " + getCreditcardPlasticId() + "\n" +
-				"creditcardType : " + getCreditcardType() + "\n" +
-				"creditcardDueAmount : " + getCreditcardDueAmount() + "\n" +
-				"creditcardDefaultInd : " + getCreditcardDefaultInd() + "\n" +
-				"creditcardDueDate : " + getCreditcardDueDate() + "\n";
+		return "customerID : " + getCustomerID() + "\n" + "customerName : "
+				+ getCustomerName() + "\n" + "customerAddress : "
+				+ getCustomerAddress() + "\n" + "customerPhone : "
+				+ getCustomerPhone() + "\n" + "customerEmail : "
+				+ getCustomerEmail() + "\n" + "creditcardAccountId : "
+				+ getCreditcardAccountId() + "\n" + "creditcardPlasticId : "
+				+ getCreditcardPlasticId() + "\n" + "creditcardType : "
+				+ getCreditcardType() + "\n" + "creditcardDueAmount : "
+				+ getCreditcardDueAmount() + "\n" + "creditcardDefaultInd : "
+				+ getCreditcardDefaultInd() + "\n" + "creditcardDueDate : "
+				+ getCreditcardDueDate() + "\n";
 	}
 
 }

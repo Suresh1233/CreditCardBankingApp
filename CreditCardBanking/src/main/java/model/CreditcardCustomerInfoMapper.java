@@ -16,7 +16,7 @@ public class CreditcardCustomerInfoMapper implements
 		creditcardCustomer.setCustomerPhone(resultSet.getLong("CUST_PHONE"));
 		creditcardCustomer.setCustomerEmail(resultSet.getString("CUST_EMAIL"));
 		creditcardCustomer.setCreditcardAccountId(resultSet
-				.getLong("CRCD_ACCT_ID"));
+				.getString("CRCD_ACCT_ID"));
 		creditcardCustomer.setCreditcardPlasticId(resultSet
 				.getLong("CRCD_PLST_ID"));
 		creditcardCustomer.setCreditcardType(resultSet.getString("CRCD_TYPE"));
